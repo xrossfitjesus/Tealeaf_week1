@@ -1,66 +1,61 @@
-#Revised R/P/S game, code review
-selection = { "r" => "rock", "p" => "paper", "s" => "scissors"}
+SELECTION = {'r' => 'Rock', 'p' => 'Paper', 's' => 'Scissors' }
 
-puts " Hello! Welcome to Rock - Paper - Scisor Game!!"
-
-
-
-#def for defined_answer
-def defined_answer(input)
-  case input
-    when "r"
-      puts " Rock Defeats Paper!"
-    when "p"
-      puts "Paper Defeats Rock!"
-    when "s" 
-      puts "Scissor Defeats Rock!" 
-    end
-  end
-  
-def answering(x,y)
-  if x == "r" && "y" == "s"
-    puts " You chose Rock, Computer choose scissor,\n win the game"
-    elsif x == "r" && y == "r"
-    puts "you chose rock, Computer chopse Rock \ntie"
-    elsif x == "r" && y == "p"
-    puts "you chose rock, computer chose paper \n lost the game"
-    end
-end
-
-def tie_result(x)
+def winning_message(x)
   case x
-  when "r"
-    puts "You chose Paper, Computer Chose Paper"
-  when "p"
-    puts "You chose Paper, Computer Chose Paper"
-  when "s"
-    puts "You chose Paper, Computer Chose Paper"
+  when 'r'
+    puts "You choose Rock, Computer Choose Scissor"
+  when 'p'
+    puts "You choose Paper, Computer choose Rock"
+  when 's'
+    puts "You choose Scissor, Computer choose Paper"
   end
 end
 
-#asking for the input
+def tie_method_message(y)
+  case y
+  when 'r'
+     puts "You Choose Rock, Computer Choose Rock!"
+  when 'p'
+    puts "You choose Paper, Computer Choose Paper!"
+  when 's'
+    puts "You choose Scisorr, Computer Choose Scissor!"
+  end
+end
+
+def losing_message(z)
+  case z
+  when 'r'
+    puts "You Choose Rock, Computer Choose Paper! \nYou lost the Game!"
+  when 'p'
+    puts "You Choose Paper, Computer choose Scissor! \nYou lost the Game!"
+  when 's'
+    puts "You Choose Scissor, Comnputer choose Rock! \nYou lost the Game!"
+  end
+end
+
+puts "Welcome to Rocks , Paper , Scisor Game!"
 
 loop do
-  
   begin
-    puts " ------Please Choose!------- \n[R] for Rock, [P] for Paper, [S] for Scissors! "
-    user_select = gets.chomp.downcase
-  end until selection.keys.include?(user_select)
-
-  comp_select = selection.keys.sample
+  puts "Please choose! \n[R] for Rock, [P] for Paper, [S] for Scissor"
+  user_choice = gets.chomp.downcase
+end until SELECTION.keys.include?(user_choice)
 
 
-  if (user_select == "r" && comp_select == "p") || (user_select == "p" && comp_select == "r") ||
-    (user_select == "r" && comp_select == "s")
-    defined_answer(user_select)
-    puts "You Win the Game!"
-  elsif user_select == comp_select
-  tie_result(comp_select)
+  comp_choice = SELECTION.keys.sample
   
-  puts "Its a tie!"
-  else
-    defined_answer(comp_select)  
-    puts "You lost"
+  if user_choice == comp_choice
+    tie_method_message(user_choice)
+    puts " It is a tie!"
+    elsif (user_choice == 'r' && comp_choice == 's') || (user_choice == 'p' && comp_choice == 'r') || (user_choice == 's' && comp_choice == 'p')
+    winning_message(user_choice)
+    puts "You win the game!"
+  elsif 
+    losing_message(user_choice)
   end
-end
-
+  
+  puts "Do you want to play again? \n[Y]- Yes, [N]-No"
+    break if gets.chomp.downcase == 'n' 
+  end
+  
+  puts "Goodbye! n_n"
